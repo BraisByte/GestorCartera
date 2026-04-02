@@ -3,6 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.chart.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.Insets?>
 
 <BorderPane fx:id="rootPane" xmlns="http://javafx.com/javafx"
@@ -15,12 +16,20 @@
               style="-fx-background-color: #242437; -fx-padding: 16 24 12 24; -fx-spacing: 12;
                      -fx-border-color: #3a3a52; -fx-border-width: 0 0 1 0;">
             <HBox alignment="CENTER_LEFT" spacing="20">
-                <VBox spacing="1">
-                    <Label text="💼 GestorCartera"
-                           style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;"/>
-                    <Label fx:id="labelSubtitulo" text="Portfolio Manager"
-                           style="-fx-text-fill: #6666aa; -fx-font-size: 10px;"/>
-                </VBox>
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <HBox alignment="CENTER"
+                          style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 4;">
+                        <ImageView fitHeight="44" fitWidth="44" preserveRatio="true" smooth="true">
+                            <image><Image url="@logo.png"/></image>
+                        </ImageView>
+                    </HBox>
+                    <VBox spacing="1">
+                        <Label text="GestorCartera"
+                               style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;"/>
+                        <Label fx:id="labelSubtitulo" text="Portfolio Manager"
+                               style="-fx-text-fill: #6666aa; -fx-font-size: 10px;"/>
+                    </VBox>
+                </HBox>
                 <Separator orientation="VERTICAL" style="-fx-background-color: #3a3a52; -fx-pref-height: 36;"/>
                 <Region HBox.hgrow="ALWAYS"/>
                 <VBox alignment="CENTER" spacing="2"
