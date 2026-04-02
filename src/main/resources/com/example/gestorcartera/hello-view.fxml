@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane fx:id="rootPane" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.gestorcartera.HelloController"
+            style="-fx-background-color: #1a1a2c;">
+
+    <top>
+        <VBox fx:id="topBar"
+              style="-fx-background-color: #242437; -fx-padding: 16 24 12 24; -fx-spacing: 12;
+                     -fx-border-color: #3a3a52; -fx-border-width: 0 0 1 0;">
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <VBox spacing="1">
+                    <Label text="💼 GestorCartera"
+                           style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;"/>
+                    <Label fx:id="labelSubtitulo" text="Portfolio Manager"
+                           style="-fx-text-fill: #6666aa; -fx-font-size: 10px;"/>
+                </VBox>
+                <Separator orientation="VERTICAL" style="-fx-background-color: #3a3a52; -fx-pref-height: 36;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <VBox alignment="CENTER" spacing="2"
+                      style="-fx-padding: 6 14; -fx-background-color: #2d2d42; -fx-background-radius: 8;">
+                    <Label fx:id="labelTituloInvertido" text="INVERTIDO"
+                           style="-fx-text-fill: #6666aa; -fx-font-size: 9px; -fx-font-weight: bold;"/>
+                    <Label fx:id="labelInvertido" text="0,00 €"
+                           style="-fx-text-fill: #60a5fa; -fx-font-size: 15px; -fx-font-weight: bold;"/>
+                </VBox>
+                <VBox alignment="CENTER" spacing="2"
+                      style="-fx-padding: 6 14; -fx-background-color: #2d2d42; -fx-background-radius: 8;">
+                    <Label fx:id="labelTituloValor" text="VALOR ACTUAL"
+                           style="-fx-text-fill: #6666aa; -fx-font-size: 9px; -fx-font-weight: bold;"/>
+                    <Label fx:id="labelValorActual" text="0,00 €"
+                           style="-fx-text-fill: #7c6af7; -fx-font-size: 15px; -fx-font-weight: bold;"/>
+                </VBox>
+                <VBox alignment="CENTER" spacing="2"
+                      style="-fx-padding: 6 14; -fx-background-color: #2d2d42; -fx-background-radius: 8;">
+                    <Label fx:id="labelTituloRent" text="RENTABILIDAD"
+                           style="-fx-text-fill: #6666aa; -fx-font-size: 9px; -fx-font-weight: bold;"/>
+                    <Label fx:id="labelRentabilidadGlobal" text="+0,00%"
+                           style="-fx-text-fill: #4ade80; -fx-font-size: 15px; -fx-font-weight: bold;"/>
+                </VBox>
+                <Separator orientation="VERTICAL" style="-fx-background-color: #3a3a52; -fx-pref-height: 36;"/>
+                <VBox alignment="CENTER_RIGHT" spacing="1">
+                    <Label fx:id="labelFechaHoy" text="-- --- ----"
+                           style="-fx-text-fill: #6666aa; -fx-font-size: 9px;"/>
+                    <Label fx:id="labelReloj" text="--:--:--"
+                           style="-fx-text-fill: #aaaacc; -fx-font-size: 16px; -fx-font-weight: bold;"/>
+                </VBox>
+
+            </HBox>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Buscar:" style="-fx-text-fill: #6666aa; -fx-font-size: 12px;"/>
+                <TextField fx:id="campoBusqueda" promptText="Nombre del activo…" prefWidth="190"
+                           style="-fx-background-color: #2d2d42; -fx-text-fill: white;
+                                  -fx-prompt-text-fill: #555570; -fx-padding: 7 10;
+                                  -fx-background-radius: 8; -fx-border-color: #3a3a52;
+                                  -fx-border-radius: 8; -fx-border-width: 1;"/>
+                <Label text="Tipo:" style="-fx-text-fill: #6666aa; -fx-font-size: 12px;"/>
+                <ComboBox fx:id="filtroTipo" prefWidth="140"
+                          style="-fx-background-color: #2d2d42; -fx-background-radius: 8;"/>
+                <Label text="Plataforma:" style="-fx-text-fill: #6666aa; -fx-font-size: 12px;"/>
+                <ComboBox fx:id="filtroPlataforma" prefWidth="150"
+                          style="-fx-background-color: #2d2d42; -fx-background-radius: 8;"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE"
+                 style="-fx-tab-min-height: 36px; -fx-font-size: 13px;">
+
+            <Tab text="🏠  Dashboard">
+                <ScrollPane fitToWidth="true"
+                            style="-fx-background-color: transparent; -fx-background: #1a1a2c;">
+                    <VBox fx:id="dashboardContainer" spacing="18"
+                          style="-fx-padding: 24; -fx-background-color: #1a1a2c;"/>
+                </ScrollPane>
+            </Tab>
+
+            <Tab text="📊  Cartera">
+                <HBox fx:id="carteraContent" spacing="16"
+                      style="-fx-padding: 20; -fx-background-color: #1a1a2c;">
+                    <VBox spacing="6" HBox.hgrow="ALWAYS">
+                        <Label text="Doble clic en una fila para editar · Clic en Valor actual para editarlo directamente"
+                               style="-fx-text-fill: #555570; -fx-font-size: 11px;"/>
+                        <TableView fx:id="tablaActivos" VBox.vgrow="ALWAYS" editable="true"
+                                   style="-fx-background-color: #242437; -fx-border-color: #3a3a52;
+                                          -fx-border-radius: 10; -fx-background-radius: 10;">
+                            <columns>
+                                <TableColumn fx:id="colNombre"       text="Activo"           prefWidth="130"/>
+                                <TableColumn fx:id="colTipo"         text="Tipo"             prefWidth="95"/>
+                                <TableColumn fx:id="colPlataforma"   text="Plataforma"       prefWidth="100"/>
+                                <TableColumn fx:id="colInvertido"    text="Invertido (€)"    prefWidth="100"/>
+                                <TableColumn fx:id="colValorActual"  text="Valor actual (€)" prefWidth="115"/>
+                                <TableColumn fx:id="colRentabilidad" text="Rentabilidad"     prefWidth="95"/>
+                                <TableColumn fx:id="colPorcentaje"   text="Peso %"           prefWidth="70"/>
+                                <TableColumn fx:id="colProgreso"     text="Barra"            prefWidth="90"/>
+                                <TableColumn fx:id="colFecha"        text="Compra"           prefWidth="90"/>
+                                <TableColumn fx:id="colRegistrado"   text="Registrado"       prefWidth="130"/>
+                                <TableColumn fx:id="colNotas"        text="Notas"            prefWidth="150"/>
+                            </columns>
+                        </TableView>
+                    </VBox>
+                    <VBox spacing="10" minWidth="270" maxWidth="270" alignment="TOP_CENTER"
+                          style="-fx-background-color: #242437; -fx-background-radius: 14;
+                                 -fx-padding: 16; -fx-border-color: #3a3a52;
+                                 -fx-border-radius: 14; -fx-border-width: 1;">
+                        <Label text="Distribución por tipo"
+                               style="-fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;"/>
+                        <Label text="Valor actual por categoría"
+                               style="-fx-text-fill: #6666aa; -fx-font-size: 10px;"/>
+                        <PieChart fx:id="graficoPorTipo" labelsVisible="false"
+                                  legendVisible="true" prefHeight="250"
+                                  style="-fx-background-color: transparent;"/>
+                    </VBox>
+                </HBox>
+            </Tab>
+
+            <Tab text="⚑  Objetivos">
+                <ScrollPane fitToWidth="true"
+                            style="-fx-background-color: transparent; -fx-background: #1a1a2c;">
+                    <VBox fx:id="objetivosContainer" spacing="16"
+                          style="-fx-padding: 24; -fx-background-color: #1a1a2c;"/>
+                </ScrollPane>
+            </Tab>
+
+            <Tab text="⚙  Simulador">
+                <VBox fx:id="simuladorContainer" spacing="20"
+                      style="-fx-padding: 28; -fx-background-color: #1a1a2c;">
+                    <Label text="Simulador de cartera"
+                           style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;"/>
+                    <Label text="Calcula cuánto tiempo necesitas para alcanzar tu objetivo financiero"
+                           style="-fx-text-fill: #6666aa; -fx-font-size: 12px;"/>
+                    <HBox spacing="16" alignment="CENTER_LEFT">
+                        <VBox spacing="6">
+                            <Label text="Objetivo (€)" style="-fx-text-fill: #aaaacc; -fx-font-size: 12px;"/>
+                            <TextField fx:id="campoObjetivo" promptText="Ej: 50000" prefWidth="150"
+                                       style="-fx-background-color: #242437; -fx-text-fill: white;
+                                              -fx-padding: 10; -fx-background-radius: 8;
+                                              -fx-border-color: #3a3a52; -fx-border-radius: 8; -fx-border-width: 1;"/>
+                        </VBox>
+                        <VBox spacing="6">
+                            <Label text="Aportación mensual (€)" style="-fx-text-fill: #aaaacc; -fx-font-size: 12px;"/>
+                            <TextField fx:id="campoAportacion" promptText="Ej: 400" prefWidth="150"
+                                       style="-fx-background-color: #242437; -fx-text-fill: white;
+                                              -fx-padding: 10; -fx-background-radius: 8;
+                                              -fx-border-color: #3a3a52; -fx-border-radius: 8; -fx-border-width: 1;"/>
+                        </VBox>
+                        <VBox spacing="6">
+                            <Label text="Rentabilidad anual esperada (%)" style="-fx-text-fill: #aaaacc; -fx-font-size: 12px;"/>
+                            <TextField fx:id="campoRentabilidadEsperada" promptText="Ej: 7" prefWidth="150"
+                                       style="-fx-background-color: #242437; -fx-text-fill: white;
+                                              -fx-padding: 10; -fx-background-radius: 8;
+                                              -fx-border-color: #3a3a52; -fx-border-radius: 8; -fx-border-width: 1;"/>
+                        </VBox>
+                        <VBox alignment="BOTTOM_LEFT" spacing="6">
+                            <Label text=" " style="-fx-font-size: 12px;"/>
+                            <Button text="▶  Calcular" onAction="#onCalcularSimulador"
+                                    style="-fx-background-color: #7c6af7; -fx-text-fill: white;
+                                           -fx-font-size: 13px; -fx-font-weight: bold;
+                                           -fx-padding: 10 28; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                        </VBox>
+                    </HBox>
+                    <VBox fx:id="resultadoSimulador" spacing="12"/>
+                </VBox>
+            </Tab>
+
+            <Tab text="📊  Comparativa">
+                <VBox fx:id="comparativaContent" spacing="14"
+                      style="-fx-padding: 24; -fx-background-color: #1a1a2c;">
+                    <Label text="Invertido vs Valor actual por activo"
+                           style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;"/>
+                    <Label text="Comparación visual de capital aportado frente a valoración actual"
+                           style="-fx-text-fill: #6666aa; -fx-font-size: 12px;"/>
+                    <BarChart fx:id="graficaComparativa"
+                              style="-fx-background-color: #242437; -fx-background-radius: 14; -fx-padding: 10;"
+                              VBox.vgrow="ALWAYS" prefHeight="420" animated="true">
+                        <xAxis><CategoryAxis style="-fx-tick-label-fill: #aaaacc;"/></xAxis>
+                        <yAxis><NumberAxis label="Valor (€)" style="-fx-tick-label-fill: #aaaacc;"/></yAxis>
+                    </BarChart>
+                </VBox>
+            </Tab>
+
+            <Tab text="📈  Evolución">
+                <VBox fx:id="evolucionContent" spacing="14"
+                      style="-fx-padding: 24; -fx-background-color: #1a1a2c;">
+                    <Label text="Evolución histórica del valor de la cartera"
+                           style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;"/>
+                    <Label text="Se registra automáticamente un punto por día al abrir la aplicación"
+                           style="-fx-text-fill: #6666aa; -fx-font-size: 12px;"/>
+                    <LineChart fx:id="graficaHistorico"
+                               style="-fx-background-color: #242437; -fx-background-radius: 14; -fx-padding: 10;"
+                               VBox.vgrow="ALWAYS" prefHeight="420" legendVisible="false" animated="true">
+                        <xAxis><CategoryAxis label="Fecha" style="-fx-tick-label-fill: #aaaacc;"/></xAxis>
+                        <yAxis><NumberAxis label="Valor (€)" style="-fx-tick-label-fill: #aaaacc;"/></yAxis>
+                    </LineChart>
+                </VBox>
+            </Tab>
+
+        </TabPane>
+    </center>
+
+    <bottom>
+        <HBox fx:id="bottomBar" spacing="10" alignment="CENTER_LEFT"
+              style="-fx-padding: 14 24; -fx-background-color: #242437;
+                     -fx-border-color: #3a3a52; -fx-border-width: 1 0 0 0;">
+            <VBox spacing="2">
+                <Label fx:id="labelTotal" text="Total: 0,00 €"
+                       style="-fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold;"/>
+                <Label fx:id="labelHoraActualizacion" text="Sin datos"
+                       style="-fx-text-fill: #555570; -fx-font-size: 10px;"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button fx:id="btnImportar"  text="📥  Importar Excel"   onAction="#onImportarExcelClick"/>
+            <Button fx:id="btnExportar"  text="⬇  Exportar informe" onAction="#onExportarClick"/>
+            <Button fx:id="botonEliminar" text="🗑  Eliminar"         onAction="#onEliminarClick"/>
+            <Button fx:id="btnAnadir"    text="＋  Añadir activo"    onAction="#onAnadirClick"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

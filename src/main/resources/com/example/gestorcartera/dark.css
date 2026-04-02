@@ -1,0 +1,28 @@
+.tab-pane { -fx-background-color: #1a1a2c; }
+.tab-pane .tab-header-area { -fx-background-color: #242437; }
+.tab-pane .tab-header-background { -fx-background-color: #242437; }
+.tab-pane .tab { -fx-background-color: #2d2d42; -fx-background-radius: 6 6 0 0; }
+.tab-pane .tab:selected { -fx-background-color: #1a1a2c; }
+.tab-pane .tab .tab-label { -fx-text-fill: #8888aa; -fx-font-size: 13px; }
+.tab-pane .tab:selected .tab-label { -fx-text-fill: #e8e8f5; -fx-font-weight: bold; }
+.chart { -fx-background-color: #242437; }
+.chart-plot-background { -fx-background-color: #1a1a2c; }
+.chart-vertical-grid-lines { -fx-stroke: #3a3a52; }
+.chart-horizontal-grid-lines { -fx-stroke: #3a3a52; }
+.axis { -fx-tick-label-fill: #8888aa; }
+.axis-label { -fx-text-fill: #8888aa; }
+.table-view { -fx-background-color: #242437; -fx-border-color: #3a3a52; }
+.table-view .column-header-background { -fx-background-color: #2d2d42; }
+.table-view .column-header { -fx-background-color: transparent; }
+.table-view .column-header .label { -fx-text-fill: #8888aa; -fx-font-weight: bold; }
+.table-row-cell { -fx-background-color: #242437; -fx-border-color: #3a3a52; -fx-border-width: 0 0 1 0; }
+.table-row-cell:odd { -fx-background-color: #2d2d42; }
+.table-row-cell:selected { -fx-background-color: #3d3d5a; }
+.table-cell { -fx-text-fill: #e8e8f5; }
+.scroll-pane { -fx-background-color: #1a1a2c; -fx-background: #1a1a2c; }
+.scroll-pane .viewport { -fx-background-color: #1a1a2c; }
+.combo-box { -fx-background-color: #2d2d42; -fx-border-color: #3a3a52; -fx-border-radius: 8; }
+.combo-box .list-cell { -fx-text-fill: #e8e8f5; -fx-background-color: transparent; }
+.combo-box-popup .list-view { -fx-background-color: #2d2d42; }
+.combo-box-popup .list-view .list-cell { -fx-text-fill: #e8e8f5; }
+.combo-box-popup .list-view .list-cell:filled:hover { -fx-background-color: #3a3a52; }
